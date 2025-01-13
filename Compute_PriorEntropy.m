@@ -8,6 +8,6 @@ function [H_L, H_sum] = Compute_PriorEntropy(LSM_prior)
 
 H_L = - LSM_prior.*log(LSM_prior + eps) - (1 - LSM_prior + eps).*log(1 - LSM_prior + eps);
 
-H_sum = sum(sum(H_temp));
+H_sum = sum(sum(H_L));
 
 end

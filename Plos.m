@@ -11,17 +11,17 @@ hu = 129; %UAV flying altitude
 phi = (asin((hu-hb)./sqrt(r.^2+(hu-hb).^2)))*180/pi;
 % theta = theta*180/pi;
 % % Dense Urban Parameter
-% a = 187.3;
-% b = 0;
-% c = 0;
-% d = 82.10;
-% e = 0.1478;
-%Urban Parameter
-a = 120;
+a = 187.3;
 b = 0;
 c = 0;
-d = 24.3;
-e = 1.229;
+d = 82.10;
+e = 0.1478;
+%Urban Parameter
+% a = 120;
+% b = 0;
+% c = 0;
+% d = 24.3;
+% e = 1.229;
 %Suburban Parameter
 % a = 101.6;
 % b = 0;

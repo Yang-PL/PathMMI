@@ -30,7 +30,7 @@ function Output1 = Compute_Raypoint(x1,y1,x2,y2)
     if (deltax==0) 
         y=ceil(min(y1,y2)):floor(max(y1,y2));%若floor(max(y1,y2))-ceil(min(y1,y2))=-1,x,y都是空的向量
         if floor(max(y1,y2))-ceil(min(y1,y2)) == -1 %y == []
-            y = [ceil(y2),floor(y1)]
+            y = [ceil(y2),floor(y1)];
         end
         y=y';
         x=x1*ones(length(y),1);
@@ -39,7 +39,7 @@ function Output1 = Compute_Raypoint(x1,y1,x2,y2)
         k=deltay/deltax;
         x=ceil(min(x1,x2)):floor(max(x1,x2));
         if floor(max(x1,x2))-ceil(min(x1,x2)) == -1 %x == []
-            x = [ceil(x2),floor(x1)]
+            x = [ceil(x2),floor(x1)];
         end
         [~,index]=find([x1,x2]==min(x1,x2));
         Point_y=[y1,y2];
