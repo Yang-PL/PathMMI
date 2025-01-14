@@ -34,9 +34,10 @@ I_l_m_xn = H_l_xn - H_l_m_xn;
 % 2). 栅格与基站连线间的互信息
 Ray=Ray_line;
 Ray1 = Ray.Bresenham(BSloc(1),BSloc(2),xn(1),xn(2)); %Ray1,BS-UAV之间的点
+% Ray1 = Ray.Compute_Raypoint(BSloc(1),BSloc(2),xn(1),xn(2)); %Ray1,BS-UAV之间的点
 %去掉Rx的点，即点（xn,yn）;
-index1 = find((abs(Ray1(:,1)-BSloc(1)) >= abs(xn(1)-BSloc(1))) | (abs(Ray1(:,2)-BSloc(2)) >= abs(xn(2)-BSloc(2))));
-Ray1(index1,:) = [];
+% index1 = find((abs(Ray1(:,1)-BSloc(1)) >= abs(xn(1)-BSloc(1))) | (abs(Ray1(:,2)-BSloc(2)) >= abs(xn(2)-BSloc(2))));
+% Ray1(index1,:) = []; % 去掉Rx的点这块有问题。
 
 [NUM1,~] = size(Ray1);
 H_l_m_x1 = zeros(NUM1,1);
@@ -62,8 +63,8 @@ end
 Map_lowBound = 1;%不能设置0以防数组索引出界
 [Map_UpBound,~] = size(LSM_prior);
 Ray2 = Ray.Compute_Raypoint_extension(BSloc(1),BSloc(2),xn(1),xn(2),Map_lowBound,Map_UpBound);%Ray2,BS-UAV延长线上的点
-index2 = find((abs(Ray2(:,1)-BSloc(2)) <= abs(xn(2)-BSloc(2))) | (abs(Ray2(:,2)-BSloc(2)) <= abs(xn(2)-BSloc(2))));
-Ray2(index2,:) = [];
+% index2 = find((abs(Ray2(:,1)-BSloc(2)) <= abs(xn(2)-BSloc(2))) | (abs(Ray2(:,2)-BSloc(2)) <= abs(xn(2)-BSloc(2))));
+% Ray2(index2,:) = [];
 
 [NUM2,~] = size(Ray2);
 H_l_m_x2 = zeros(NUM2,1);
