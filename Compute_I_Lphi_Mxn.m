@@ -46,11 +46,14 @@ I_l_m_x1 = zeros(NUM1,1);
 for i = 1:NUM1 % 依次计算Ray1中每个栅格位置的互信息大小
     x1 = Ray1(i,:);
     P_llos_x1 = LSM_prior(x1(1),x1(2)); % 位置x1处的先验LoS概率
+    if P_llos_x1 - P_llos_xn < 0 
+        break
+    end
     H_l_x1(i) = -(P_llos_x1.*log(P_llos_x1 + eps) + (1 - P_llos_x1).*log(1 - P_llos_x1 + eps));
 
     P_llos_x1_mlos_xn = ((1 - eps1).*P_llos_xn + eps2.*(P_llos_x1 - P_llos_xn))./((1 - eps1).*P_llos_xn + eps2.*(1 - P_llos_xn));
     P_llos_x1_mnlos_xn = (eps1.*P_llos_xn + (1 - eps2).*(P_llos_x1 - P_llos_xn))./(eps1.*P_llos_xn + (1 - eps2).*(1 - P_llos_xn));
-
+    
     H_l_m_los_x1 =  -(P_llos_x1_mlos_xn.*log(P_llos_x1_mlos_xn + eps)+(1 - P_llos_x1_mlos_xn).*log(1 - P_llos_x1_mlos_xn+eps));
     H_l_m_nlos_x1 =   -(P_llos_x1_mnlos_xn.*log(P_llos_x1_mnlos_xn + eps)+(1 - P_llos_x1_mnlos_xn).*log(1 - P_llos_x1_mnlos_xn+eps));
 
@@ -73,6 +76,9 @@ I_l_m_x2 = zeros(NUM2,1);
 for i = 1:NUM2 % 依次计算Ray2中每个栅格位置的互信息大小
     x2 = Ray2(i,:);
     P_llos_x2 = LSM_prior(x2(1),x2(2)); % 位置x2处的先验LoS概率
+    if P_llos_x2 - P_llos_xn > 0 
+        break
+    end
     H_l_x2(i) = -(P_llos_x2.*log(P_llos_x2 + eps) + (1 - P_llos_x2).*log(1 - P_llos_x2 + eps));
 
     P_llos_x2_mlos_xn = (1 - eps1).*P_llos_x2./((1 - eps1).*P_llos_xn + eps2.* (1 - P_llos_xn)); % 

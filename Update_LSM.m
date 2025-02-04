@@ -1,7 +1,8 @@
-function LSM_posterior = Update_LSM(LSM_prior, xn, zn, Channel_Para, LSM_initial, BSloc)
+function [updated_grid, LSM_posterior] = Update_LSM(LSM_prior, xn, zn, Channel_Para, LSM_initial, BSloc)
 %Update_LSM 用一个在xn的测量值来更新LSM
 %   Detailed explanation goes here
 %   Input: P_llos is the initial LoS probability, LSM_prior is the prior LoS probability.
+%   Output: updated_grid is the updated grid.
 
 % 在测量位置的方向上的栅格更新
 Ray=Ray_line;
@@ -75,6 +76,7 @@ mask = angle_diff <= phi_th;
 % 获取符合条件的点的二维坐标 
 [row, col] = find(mask); 
 Ray3 = [col,row]; % 要更新的栅格坐标
+updated_grid = [col,row];
 
 [~,idx1,~] = intersect(Ray3,Ray1,'rows');
 Ray3(idx1,:) = [];
