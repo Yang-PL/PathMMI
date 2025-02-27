@@ -17,7 +17,7 @@ function waypoints = generateTrajectoryFromDiscrete(mapCenter, startPos, destPos
     % 将测量点和角度组合
     measData = [measurementPositions, measAngles];
     % 按角度从小到大排序
-    measData = sortrows(measData, 3);
+    % measData = sortrows(measData, 3);
     
     % 判断起点到终点角度跨度（顺时针和逆时针）
     if thetaDest >= thetaStart
@@ -90,12 +90,13 @@ function waypoints = generateTrajectoryFromDiscrete(mapCenter, startPos, destPos
 %         return;
 %     end
     
+    
     % 对选取的点进行排序（依据所选方向）
     if spanCW <= spanCCW
-        [~, sortIdx] = sort(selectedAngles);
+        [~, sortIdx] = sort(mod(selectedAngles - thetaStart,360));
         selectedPoints = selectedPoints(sortIdx, :);
     else
-        [~, sortIdx] = sort(selectedAngles, 'descend');
+        [~, sortIdx] = sort(mod(selectedAngles - thetaStart,360), 'descend');
         selectedPoints = selectedPoints(sortIdx, :);
     end
     

@@ -1,4 +1,4 @@
-function resampledWaypoints = generateUniformTrajectory(mapCenter, startPos, destPos, measurementPositions, stepLength)
+function [waypoints,resampledWaypoints] = generateUniformTrajectory(mapCenter, startPos, destPos, measurementPositions, stepLength)
     % generateUniformTrajectory 生成无人机从起点到终点的飞行轨迹
     % 其中初始轨迹点是从输入的离散测量点中选取（选择跨度较小的一侧）
     % 最后沿轨迹按照固定飞行长度进行重采样
