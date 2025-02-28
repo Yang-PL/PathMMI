@@ -122,7 +122,8 @@ function route2 = SquareSpiralGrid_planner(map, dist_between_meas_loc)%, num_of_
         
     end
 
-    route2 = path;
+
+    route2 = flipud(path);
     
     
 end
